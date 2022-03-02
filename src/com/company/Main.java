@@ -1,16 +1,26 @@
 package com.company;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
   Scanner scan = new Scanner(System.in);
   final String ALPHABET = " ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
-  char[] alphabetToChars = ALPHABET.toCharArray();
+  String inputText = "Frederik".toUpperCase();
+  int[] charPosition = new int[inputText.length()];
 
+  int shiftValue = 0;
   int input = 0;
+
+  public void homePage() {
+    System.out.printf("Type 1 for Caesar Algorithm \n" +
+        "Type 2 for Vigenère algorithm \n");
+    checkInput(); // will go to the checkInput() method to assign input a new value & make sure return value is either 1 & 2.
+    if (input == 1) { // Following will now direct user to next method based on their decision or return them homeScreen()
+      caesarPage();
+    }
+    vigenerePage();
+  }
 
   public void checkInput() {
     input = scan.nextInt();
@@ -26,16 +36,6 @@ public class Main {
       }
     }
     System.out.println("You entered: " + input);
-  }
-
-  public void homePage() {
-    System.out.printf("Type 1 for Caesar Algorithm \n" +
-        "Type 2 for Vigenère algorithm \n");
-    checkInput(); // will go to the checkInput() method to assign input a new value & make sure return value is either 1 & 2.
-    if (input == 1) { // Following will now direct user to next method based on their decision or return them homeScreen()
-      caesarPage();
-    }
-    vigenerePage();
   }
 
   public void caesarPage() { // The Caesar landing page which uses same loop and if statements to direct user to next page.
@@ -62,10 +62,26 @@ public class Main {
     }
   }
 
-  public int caesarEncrypt() {
-    return 0;
+  public int shiftValue(){
+    while (!(shiftValue >=1 && shiftValue <=30)) { // Created a while loop using try / if / catch to check if user is typing correct information.
+      System.out.println("Please enter number between 1-30 to swift value");
+      try {
+        shiftValue = Integer.parseInt(scan.nextLine());
+        if (!(shiftValue >=1 && shiftValue <=30)) {
+          System.out.println("Input is not in choices!"); // If user types other numbers, it will return this message.
+        }
+      } catch (NumberFormatException e) {
+        System.out.println("Input is invalid!"); // if user types other than numbers, it will return this message.
+      }
+  }
+    return shiftValue;
   }
 
+  public void caesarEncrypt() {
+//    shiftValue();
+    int shiftValue = shiftValue();
+
+  }
   public int caesarDecryption() {
     return 0;
   }
@@ -78,20 +94,25 @@ public class Main {
     return 0;
   }
 
-  public void textToNumber(String inputText) {
-    inputText = inputText.toUpperCase();
-    int[] charPosition = new int [inputText.length()];
+  public int[] textToNumber() {
+//    inputText = scan.nextLine().toUpperCase();
 
-    for (int i = 0; i < inputText.length(); i++) {
-     charPosition[i] = ALPHABET.indexOf(inputText.charAt(i)); // The character matching alphabet will be stored in charPos array.
-      }
+//    int[] charPosition = new int[inputText.length()];
+    int i;
+    for (i = 0; i < inputText.length(); i++) {
+      charPosition[i] = ALPHABET.indexOf(inputText.charAt(i)); // The character matching alphabet will be stored in charPos array.
+//      System.out.print(charPosition[i] + " ");
+    }
+    return charPosition;
   }
 
-  public char numberToText(int inputNumber) {
-    char number = ALPHABET.charAt(inputNumber);
+
+/*  public char numberToText() {
+    textToNumber();
+    char number = inputText.charAt(textToNumber(););
     System.out.println(number);
     return number;
-  }
+  }*/
 
 
   public static void main(String[] args) {
@@ -99,9 +120,10 @@ public class Main {
 
  /*   System.out.println("Welcome to my encryption / decryption tool");
     System.out.println("Please select which algorithm you want to use:");
-
     obj.homePage();*/
-    String inputText = "Frederik";
-    obj.textToNumber(inputText.toUpperCase());
+
+//    String inputText = "Fred erik";
+    obj.textToNumber();
+    obj.caesarEncrypt();
   }
 }
