@@ -9,22 +9,38 @@ public class Main {
     System.out.println("Please select which algorithm you want to use:");
     System.out.printf("Type 1 for Caesar Algorithm \n" +
         "Type 2 for Vigenère algorithm \n");
-    int press = scan.nextInt();
-    if (press == 1) {
+    int input = scan.nextInt();
+    if (input == 1) {
       return caesar();}
-    else if (press == 2) {
+    else if (input == 2) {
       return vigenere();
     }
     return homeScreen();
   }
 
   public int caesar() {
-    //FILL
-    return 0;
+    System.out.println("You have chosen the Caesar Algorithm. Please select if you want to encrypt or decrypt a message:");
+    System.out.printf("Type 1 to encrypt a message\n" +
+        "Type 2 to decrypt a message\n");
+    int input = scan.nextInt();
+    if (input == 1) {
+      return caesarEncrypt();}
+    else if (input == 2) {
+      return caesarDecryption();
+    }
+    return caesar();
   }
 
   public int vigenere() {
     //FILL
+    return 0;
+  }
+
+  public int caesarEncrypt () {
+    return 0;
+  }
+
+  public int caesarDecryption (){
     return 0;
   }
 
