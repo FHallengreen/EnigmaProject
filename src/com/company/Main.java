@@ -1,8 +1,5 @@
 package com.company;
 
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +11,6 @@ public class Main {
   //String inputText;
 
   String inputText = "Fred erik".toUpperCase();
-
 
   int input = 0;
 
@@ -50,7 +46,7 @@ public class Main {
         "Type 2 to decrypt a message\n");
     checkInput();
     if (input == 1) {
-      //caesarEncrypt();
+      //caesarEncryption();
     } else {
       //caesarDecryption();
     }
@@ -69,7 +65,7 @@ public class Main {
   }
 
 
-  public String caesarEncrypt(String textToEncrypt, int shiftValue) {
+  public String caesarEncryption(String textToEncrypt, int shiftValue) {
 
     int[] numbersFromText = textToNumber(textToEncrypt); // creating array for the text we will encrypt.
 
@@ -91,10 +87,6 @@ public class Main {
 
     return decipheredText;
   }
-
-  /*public int caesarDecryption() {
-    return 0;
-  }*/
 
   public int vigenereEncrypt() {
     return 0;
@@ -155,7 +147,7 @@ public class Main {
 
 
 
-    String encryptedText = obj.caesarEncrypt(obj.inputText, obj.shiftedValue);
+    String encryptedText = obj.caesarEncryption(obj.inputText, obj.shiftedValue);
 
     System.out.println(encryptedText);
 
