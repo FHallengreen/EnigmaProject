@@ -7,9 +7,8 @@ public class Main {
 
   final String ALPHABET = " ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
 
-/*  int shiftedValue = 6;
-
-  String inputText = "ABCCC".toUpperCase();*/
+  int shiftedValue;
+  String inputText;
 
   int input = 0;
 
@@ -19,11 +18,13 @@ public class Main {
     checkInput(); // will go to the checkInput() method to assign input a new value & make sure return value is either 1 & 2.
     if (input == 1) { // Following will now direct user to next method based on their decision or return them homeScreen()
       caesarPage();
+    } else if (input == 2) {
+      vigenerePage();
     }
-    vigenerePage();
   }
 
   public void checkInput() {
+    input = scan.nextInt();
     while (input != 1 && input != 2) { // Created a while loop using try / if / catch to check if user is typing correct information.
       System.out.println("Please enter 1 or 2: ");
       try {
@@ -44,9 +45,17 @@ public class Main {
         "Type 2 to decrypt a message\n");
     checkInput();
     if (input == 1) {
-      caesarEncryption(scan.next(),scan.nextInt());
+      System.out.println("Enter message you want to encrypt: ");
+      inputText = scan.next();
+      System.out.println("Enter swift value");
+      shiftedValue = scan.nextInt();
+      caesarEncryption(inputText.toUpperCase(), shiftedValue);
     } else {
-      //caesarDecryption();
+      System.out.println("Enter message you want to decrypt: ");
+      inputText = scan.next();
+      System.out.println("Enter swift value");
+      shiftedValue = scan.nextInt();
+      caesarDecryption(inputText.toUpperCase(), shiftedValue);
     }
   }
 
@@ -71,6 +80,7 @@ public class Main {
 
     String encryptCipherText = numbersToText(shiftedValuesFromText); // Will turn the values back into letters.
 
+    System.out.println(encryptCipherText);
     return encryptCipherText;
 
   }
@@ -83,7 +93,9 @@ public class Main {
 
     String decipheredText = numbersToText(shiftedValuesFromText); // Will turn the values back into letters.
 
+    System.out.println(decipheredText);
     return decipheredText;
+
   }
 
   public int vigenereEncrypt() {
@@ -96,16 +108,14 @@ public class Main {
 
   public int[] shiftValue(int[] originalPositions, int shiftValue) { // Will use the entered shiftValue to make an array with shifted values.
 
-    int length = ALPHABET.length();
-
     int[] shiftedPositions = new int[originalPositions.length];
 
     for (int i = 0; i < originalPositions.length; i++) { // looping the original positions array (created in numbersToText() and returning shiftedpositions[], adding the shiftValue.
 
       int shiftedNumber = originalPositions[i] + shiftValue;
 
-      if (shiftedNumber < 0) {
-        shiftedPositions[i] = length + shiftedNumber;
+      if (shiftedNumber < 1) {
+        shiftedPositions[i] = ALPHABET.length() + shiftedNumber - 1;
       } else if (shiftedNumber > ALPHABET.length() - 1) {
         shiftedPositions[i] = shiftedNumber - ALPHABET.length();
       } else {
@@ -151,22 +161,9 @@ public class Main {
   public static void main(String[] args) {
     Main obj = new Main();
 
-    //obj.homePage();
-
-
-/*    String encryptedText = obj.caesarEncryption(obj.inputText, obj.shiftedValue);
-
-    System.out.println(encryptedText);
-
-    String decypher = obj.caesarDecryption(encryptedText, obj.shiftedValue);
-    System.out.println(decypher);*/
-
     System.out.println("Welcome to my encryption / decryption tool");
     System.out.println("Please select which algorithm you want to use:");
     obj.homePage();
 
-//    String inputText = "Fred erik";
-    //obj.textToNumber();
-//    obj.caesarEncrypt();
   }
 }
