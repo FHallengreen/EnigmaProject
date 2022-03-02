@@ -145,7 +145,6 @@ public class Main {
     return charPosition;
   }
 
-
   public static void main(String[] args) {
     Main obj = new Main();
 
