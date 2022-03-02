@@ -15,6 +15,7 @@ public class Main {
 
   String inputText = "Fred erik".toUpperCase();
 
+
   int input = 0;
 
   public void homePage() {
@@ -112,6 +113,7 @@ public class Main {
     }
 
     return shiftedPositions;
+
   }
 
   public String numbersToText(int[] charPositions){
@@ -144,6 +146,7 @@ public class Main {
     }
     return charPosition;
   }
+
 
   public static void main(String[] args) {
     Main obj = new Main();
