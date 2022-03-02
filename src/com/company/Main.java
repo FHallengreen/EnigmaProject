@@ -7,10 +7,9 @@ public class Main {
 
   final String ALPHABET = " ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
 
-  int shiftedValue = 5;
-  //String inputText;
+  int shiftedValue = 1;
 
-  String inputText = "Fred erik".toUpperCase();
+  String inputText = "ØLLE".toUpperCase();
 
   int input = 0;
 
@@ -69,9 +68,9 @@ public class Main {
 
     int[] numbersFromText = textToNumber(textToEncrypt); // creating array for the text we will encrypt.
 
-    int[] shiftedValuesFromText = shiftValue(numbersFromText, shiftValue); //
+    int[] shiftedValuesFromText = shiftValue(numbersFromText, shiftValue); // Using the shiftValue method to return the encrypted message as values.
 
-    String encryptCipherText = numbersToText(shiftedValuesFromText);
+    String encryptCipherText = numbersToText(shiftedValuesFromText); // Will turn the values back into letters.
 
     return encryptCipherText;
 
@@ -79,11 +78,11 @@ public class Main {
 
   public String caesarDecryption(String textToEncrypt, int shiftValue){
 
-    int[] numbersFromText = textToNumber(textToEncrypt);
+    int[] numbersFromText = textToNumber(textToEncrypt); // creating array for the text we will decrypt.
 
-    int[] shiftedValuesFromText = shiftValue(numbersFromText, shiftValue*-1);
+    int[] shiftedValuesFromText = shiftValue(numbersFromText, shiftValue-2); // Using shiftValue() to return decrypted text.
 
-    String decipheredText = numbersToText(shiftedValuesFromText);
+    String decipheredText = numbersToText(shiftedValuesFromText); // Will turn the values back into letters.
 
     return decipheredText;
   }
@@ -100,12 +99,17 @@ public class Main {
 
     int[] shiftedPositions = new int[originalPositions.length];
 
-    for (int i = 0; i < originalPositions.length; i++) {
+    for (int i = 0; i < originalPositions.length; i++) { // looping the original positions array (created in numbersToText() and returning shiftedpositions[], adding the shiftValue.
       shiftedPositions[i] = originalPositions[i] + shiftValue;
+      if (shiftedPositions[i] <= 0){
+        shiftedPositions[i] = ALPHABET.length() + shiftedValue - 1;
+      }
+      else if (shiftedPositions[i] > 29){
+        shiftedPositions[i] = shiftedValue % ALPHABET.length() + 1;
     }
 
+  }
     return shiftedPositions;
-
   }
 
   public String numbersToText(int[] charPositions){
