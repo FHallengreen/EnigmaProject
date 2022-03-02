@@ -1,15 +1,20 @@
 package com.company;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
   Scanner scan = new Scanner(System.in);
-  final String ALPHABET = " ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
-  String inputText = "Frederik".toUpperCase();
-  int[] charPosition = new int[inputText.length()];
 
-  int shiftValue = 0;
+  final String ALPHABET = " ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
+
+  int shiftedValue = 2;
+  //String inputText;
+
+  String inputText = "Frederik".toUpperCase();
+
   int input = 0;
 
   public void homePage() {
@@ -44,9 +49,9 @@ public class Main {
         "Type 2 to decrypt a message\n");
     checkInput();
     if (input == 1) {
-      caesarEncrypt();
+      //caesarEncrypt();
     } else {
-      caesarDecryption();
+      //caesarDecryption();
     }
   }
 
@@ -62,29 +67,33 @@ public class Main {
     }
   }
 
-  public int shiftValue(){
-    while (!(shiftValue >=1 && shiftValue <=30)) { // Created a while loop using try / if / catch to check if user is typing correct information.
-      System.out.println("Please enter number between 1-30 to swift value");
-      try {
-        shiftValue = Integer.parseInt(scan.nextLine());
-        if (!(shiftValue >=1 && shiftValue <=30)) {
-          System.out.println("Input is not in choices!"); // If user types other numbers, it will return this message.
-        }
-      } catch (NumberFormatException e) {
-        System.out.println("Input is invalid!"); // if user types other than numbers, it will return this message.
-      }
-  }
-    return shiftValue;
-  }
 
-  public void caesarEncrypt() {
-//    shiftValue();
-    int shiftValue = shiftValue();
+  public String caesarEncrypt(String textToEncrypt, int shiftValue) {
+
+    int[] numbersFromText = textToNumber(textToEncrypt); // creating array for the text we will encrypt.
+
+    int[] shiftedValuesFromText = shiftValue(numbersFromText, shiftValue); //
+
+    String encryptCipherText = numbersToText(shiftedValuesFromText);
+
+    return encryptCipherText;
 
   }
-  public int caesarDecryption() {
+
+  public String caesarDecryption(String textToEncrypt, int shiftValue){
+
+    int[] numbersFromText = textToNumber(textToEncrypt);
+
+    int[] shiftedValuesFromText = shiftValue(numbersFromText, shiftValue*-1);
+
+    String decipheredText = numbersToText(shiftedValuesFromText);
+
+    return decipheredText;
+  }
+
+  /*public int caesarDecryption() {
     return 0;
-  }
+  }*/
 
   public int vigenereEncrypt() {
     return 0;
@@ -94,36 +103,69 @@ public class Main {
     return 0;
   }
 
-  public int[] textToNumber() {
-//    inputText = scan.nextLine().toUpperCase();
+  public int[] shiftValue(int[] originalPositions, int shiftValue) { // Will use the entered shiftValue to make an array with shifted values.
 
-//    int[] charPosition = new int[inputText.length()];
+    int[] shiftedPositions = new int[originalPositions.length];
+
+    for (int i = 0; i < originalPositions.length; i++) {
+      shiftedPositions[i] = originalPositions[i] + shiftValue;
+    }
+
+    return shiftedPositions;
+  }
+
+  public String numbersToText(int[] charPositions){
+
+    String cipherText = "";
+
+    for (int i = 0; i < charPositions.length; i++) {
+
+      //For each iteration of the loop, we add a new character to the string.
+
+      char charFromAlphabet = ALPHABET.charAt(charPositions[i]);
+
+      cipherText += String.valueOf(charFromAlphabet);
+
+
+    }
+
+    return cipherText;
+
+  }
+
+  public int[] textToNumber(String inputText) {
+
+    int[] charPosition = new int[inputText.length()];
+
     int i;
     for (i = 0; i < inputText.length(); i++) {
       charPosition[i] = ALPHABET.indexOf(inputText.charAt(i)); // The character matching alphabet will be stored in charPos array.
-//      System.out.print(charPosition[i] + " ");
+      //System.out.print(charPosition[i] + " ");
     }
     return charPosition;
   }
 
 
-/*  public char numberToText() {
-    textToNumber();
-    char number = inputText.charAt(textToNumber(););
-    System.out.println(number);
-    return number;
-  }*/
-
-
   public static void main(String[] args) {
     Main obj = new Main();
+
+    //obj.homePage();
+
+
+
+    String encryptedText = obj.caesarEncrypt(obj.inputText, obj.shiftedValue);
+
+    System.out.println(encryptedText);
+
+    String decypher = obj.caesarDecryption(encryptedText, obj.shiftedValue);
+    System.out.println(decypher);
 
  /*   System.out.println("Welcome to my encryption / decryption tool");
     System.out.println("Please select which algorithm you want to use:");
     obj.homePage();*/
 
 //    String inputText = "Fred erik";
-    obj.textToNumber();
-    obj.caesarEncrypt();
+    //obj.textToNumber();
+//    obj.caesarEncrypt();
   }
 }
