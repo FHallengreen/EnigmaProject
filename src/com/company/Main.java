@@ -13,7 +13,7 @@ public class Main {
   int shiftedValue = 5;
   //String inputText;
 
-  String inputText = "Frederik".toUpperCase();
+  String inputText = "Fred erik".toUpperCase();
 
   int input = 0;
 
