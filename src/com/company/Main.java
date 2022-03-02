@@ -10,7 +10,7 @@ public class Main {
 
   final String ALPHABET = " ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ";
 
-  int shiftedValue = 2;
+  int shiftedValue = 5;
   //String inputText;
 
   String inputText = "Frederik".toUpperCase();
