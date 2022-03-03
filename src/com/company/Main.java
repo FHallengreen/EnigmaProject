@@ -13,6 +13,8 @@ public class Main {
   int input = 0;
 
   public void homePage() {
+    System.out.println("Welcome to my encryption / decryption tool");
+    System.out.println("Please select which algorithm you want to use:");
     System.out.printf("Type 1 for Caesar Algorithm \n" +
         "Type 2 for Vigenère algorithm \n");
     checkInput(); // will go to the checkInput() method to assign input a new value & make sure return value is either 1 & 2.
@@ -30,6 +32,22 @@ public class Main {
       try {
         input = Integer.parseInt(scan.nextLine());
         if (input != 1 && input != 2) {
+          System.out.println("Input is not in choices!"); // If user types other numbers, it will return this message.
+        }
+      } catch (NumberFormatException e) {
+        System.out.println("Input is invalid!"); // if user types other than numbers, it will return this message.
+      }
+    }
+    System.out.println("You entered: " + input);
+  }
+
+  public void checkInputThreeOptions() {
+    input = scan.nextInt();
+    while (input != 1 && input != 2 && input != 3) { // Created a while loop using try / if / catch to check if user is typing correct information.
+      System.out.println("Please enter 1, 2 or 3: ");
+      try {
+        input = Integer.parseInt(scan.nextLine());
+        if (input != 1 && input != 2 && input != 3) {
           System.out.println("Input is not in choices!"); // If user types other numbers, it will return this message.
         }
       } catch (NumberFormatException e) {
@@ -77,7 +95,7 @@ public class Main {
   }
 
 
-  public String caesarEncryption(String textToEncrypt, int shiftValue) {
+  public void caesarEncryption(String textToEncrypt, int shiftValue) {
 
     int[] numbersFromText = textToNumber(textToEncrypt); // creating array for the text we will encrypt.
 
@@ -85,12 +103,24 @@ public class Main {
 
     String encryptCipherText = numbersToText(shiftedValuesFromText); // Will turn the values back into letters.
 
-    System.out.println(encryptCipherText);
-    return encryptCipherText;
+    System.out.println("Encrypted message: " + encryptCipherText);
 
+    System.out.println("\n\n Would you like to try a new text, maybe decrypt your message, or head back to the main menu?");
+    System.out.println("Press 1 for a new text\n" +
+        "Press 2 to decrypt message\n" +
+        "Press 3 for the Main Menu\n");
+    checkInputThreeOptions();
+
+    if (input == 1){
+      caesarDecryption(inputText.toUpperCase(), shiftedValue);
+    }
+    else if (input == 2){
+      caesarPage();
+    }
+    else homePage();
   }
 
-  public String caesarDecryption(String textToEncrypt, int shiftValue) {
+  public void caesarDecryption(String textToEncrypt, int shiftValue) {
 
     int[] numbersFromText = textToNumber(textToEncrypt); // creating array for the text we will decrypt.
 
@@ -98,11 +128,22 @@ public class Main {
 
     String decryptCipherText = numbersToText(shiftedValuesFromText); // Will turn the values back into letters.
 
-    System.out.println(decryptCipherText);
-    return decryptCipherText;
+    System.out.println("Decrypted message: " + decryptCipherText);
 
+    System.out.println("\n\n Would you like to try a new text, maybe encrypt your message, or head back to the main menu?");
+    System.out.println("Press 1 for a new text\n" +
+        "Press 2 to encrypt message\n" +
+        "Press 3 for the Main Menu\n");
+    checkInputThreeOptions();
+
+    if (input == 1){
+      caesarEncryption(inputText.toUpperCase(), shiftedValue);
+    }
+    else if (input == 2){
+      caesarPage();
+    }
+    else homePage();
   }
-
 
   public int vigenereEncrypt(String textToEncrypt, String keyword) {
     return 0;
@@ -167,8 +208,6 @@ public class Main {
   public static void main(String[] args) {
     Main obj = new Main();
 
-    System.out.println("Welcome to my encryption / decryption tool");
-    System.out.println("Please select which algorithm you want to use:");
     obj.homePage();
 
   }
