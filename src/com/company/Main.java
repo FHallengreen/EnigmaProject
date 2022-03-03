@@ -43,18 +43,17 @@ public class Main {
     System.out.println("You have chosen the Caesar Algorithm. Please select if you want to encrypt or decrypt a message:");
     System.out.printf("Type 1 to encrypt a message\n" +
         "Type 2 to decrypt a message\n");
+
     checkInput();
+
+    System.out.println("Enter message you want to encrypt / decrypt: ");
+    inputText = scan.next();
+    System.out.println("Enter swift value");
+    shiftedValue = scan.nextInt();
+
     if (input == 1) {
-      System.out.println("Enter message you want to encrypt: ");
-      inputText = scan.next();
-      System.out.println("Enter swift value");
-      shiftedValue = scan.nextInt();
       caesarEncryption(inputText.toUpperCase(), shiftedValue);
     } else {
-      System.out.println("Enter message you want to decrypt: ");
-      inputText = scan.next();
-      System.out.println("Enter swift value");
-      shiftedValue = scan.nextInt();
       caesarDecryption(inputText.toUpperCase(), shiftedValue);
     }
   }
@@ -63,11 +62,17 @@ public class Main {
     System.out.println("You have chosen the Vigenère Algorithm. Please select if you want to encrypt or decrypt a message:");
     System.out.printf("Type 1 to encrypt a message\n" +
         "Type 2 to decrypt a message\n");
+
     checkInput();
+
+    System.out.println("Enter message you want to encrypt / decrypt: ");
+    inputText = scan.next();
+    System.out.println("Enter keyword");
+    String keyword = scan.next();
     if (input == 1) {
-      vigenereEncrypt();
+      vigenereEncrypt(inputText.toUpperCase(),keyword.toUpperCase());
     } else {
-      vigenereDecryption();
+      vigenereDecryption(inputText.toUpperCase(),keyword.toUpperCase());
     }
   }
 
@@ -98,11 +103,12 @@ public class Main {
 
   }
 
-  public int vigenereEncrypt() {
-    return 0;
+
+  public int vigenereEncrypt(String textToEncrypt, String keyword) {
+   return 0;
   }
 
-  public int vigenereDecryption() {
+  public int vigenereDecryption(String textToEncrypt, String keyword) {
     return 0;
   }
 
@@ -114,7 +120,7 @@ public class Main {
 
       int shiftedNumber = originalPositions[i] + shiftValue;
 
-      if (shiftedNumber < 1) {
+      if (shiftedNumber < 1) { // To avoid outOfBounds error we need two if statements to get the correct value at either side of the alphabet.
         shiftedPositions[i] = ALPHABET.length() + shiftedNumber - 1;
       } else if (shiftedNumber > ALPHABET.length() - 1) {
         shiftedPositions[i] = shiftedNumber - ALPHABET.length();
