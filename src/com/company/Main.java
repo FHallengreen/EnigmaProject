@@ -111,13 +111,11 @@ public class Main {
         "Press 3 for the Main Menu\n");
     checkInputThreeOptions();
 
-    if (input == 1){
+    if (input == 1) {
       caesarDecryption(inputText.toUpperCase(), shiftedValue);
-    }
-    else if (input == 2){
+    } else if (input == 2) {
       caesarPage();
-    }
-    else homePage();
+    } else homePage();
   }
 
   public void caesarDecryption(String textToEncrypt, int shiftValue) {
@@ -136,13 +134,11 @@ public class Main {
         "Press 3 for the Main Menu\n");
     checkInputThreeOptions();
 
-    if (input == 1){
+    if (input == 1) {
       caesarEncryption(inputText.toUpperCase(), shiftedValue);
-    }
-    else if (input == 2){
+    } else if (input == 2) {
       caesarPage();
-    }
-    else homePage();
+    } else homePage();
   }
 
   public int vigenereEncrypt(String textToEncrypt, String keyword) {
