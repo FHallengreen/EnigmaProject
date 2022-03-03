@@ -132,7 +132,7 @@ public class Main {
       int shiftedNumber = originalPositions[i] + shiftValue;
 
       if (shiftedNumber < 1) { // To avoid outOfBounds error we need two if statements to get the correct value at either side of the alphabet.
-        shiftedPositions[i] = ALPHABET.length() + shiftedNumber - 1;
+        shiftedPositions[i] = ALPHABET.length() + shiftedNumber;
       } else if (shiftedNumber > ALPHABET.length() - 1) {
         shiftedPositions[i] = shiftedNumber - ALPHABET.length();
       } else {
