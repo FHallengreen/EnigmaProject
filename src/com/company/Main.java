@@ -16,7 +16,7 @@ public class Main {
     System.out.println("Welcome to my encryption / decryption tool");
     System.out.println("Please select which algorithm you want to use:");
     System.out.printf("Type 1 for Caesar Algorithm \n" +
-        "Type 2 for Vigenère algorithm \n");
+        "Type 2 for Vigenère algorithm (NOT IMPLEMENTED YET) \n");
     checkInput(); // will go to the checkInput() method to assign input a new value & make sure return value is either 1 & 2.
     if (input == 1) { // Following will now direct user to next method based on their decision or return them homeScreen()
       caesarPage();
@@ -76,24 +76,6 @@ public class Main {
     }
   }
 
-  public void vigenerePage() {
-    System.out.println("You have chosen the Vigenère Algorithm. Please select if you want to encrypt or decrypt a message:");
-    System.out.printf("Type 1 to encrypt a message\n" +
-        "Type 2 to decrypt a message\n");
-
-    checkInput();
-
-    System.out.println("Enter message you want to encrypt / decrypt: ");
-    inputText = scan.next();
-    System.out.println("Enter keyword");
-    String keyword = scan.next();
-    if (input == 1) {
-      vigenereEncrypt(inputText.toUpperCase(), keyword.toUpperCase());
-    } else {
-      vigenereDecryption(inputText.toUpperCase(), keyword.toUpperCase());
-    }
-  }
-
 
   public void caesarEncryption(String textToEncrypt, int shiftValue) {
 
@@ -139,14 +121,6 @@ public class Main {
     } else if (input == 2) {
       caesarPage();
     } else homePage();
-  }
-
-  public int vigenereEncrypt(String textToEncrypt, String keyword) {
-    return 0;
-  }
-
-  public int vigenereDecryption(String textToEncrypt, String keyword) {
-    return 0;
   }
 
   public int[] shiftValue(int[] originalPositions, int shiftValue) { // Will use the entered shiftValue to make an array with shifted values.
@@ -198,6 +172,34 @@ public class Main {
       //System.out.print(charPosition[i] + " ");
     }
     return charPosition;
+  }
+
+  // VIGENERE TO BE IMPLEMENTED.
+
+  public void vigenerePage() {
+    System.out.println("You have chosen the Vigenère Algorithm. Please select if you want to encrypt or decrypt a message:");
+    System.out.printf("Type 1 to encrypt a message\n" +
+        "Type 2 to decrypt a message\n");
+
+    checkInput();
+
+    System.out.println("Enter message you want to encrypt / decrypt: ");
+    inputText = scan.next();
+    System.out.println("Enter keyword");
+    String keyword = scan.next();
+    if (input == 1) {
+      vigenereEncrypt(inputText.toUpperCase(), keyword.toUpperCase());
+    } else {
+      vigenereDecryption(inputText.toUpperCase(), keyword.toUpperCase());
+    }
+  }
+
+  public int vigenereEncrypt(String textToEncrypt, String keyword) {
+    return 0;
+  }
+
+  public int vigenereDecryption(String textToEncrypt, String keyword) {
+    return 0;
   }
 
 
