@@ -70,9 +70,9 @@ public class Main {
     System.out.println("Enter keyword");
     String keyword = scan.next();
     if (input == 1) {
-      vigenereEncrypt(inputText.toUpperCase(),keyword.toUpperCase());
+      vigenereEncrypt(inputText.toUpperCase(), keyword.toUpperCase());
     } else {
-      vigenereDecryption(inputText.toUpperCase(),keyword.toUpperCase());
+      vigenereDecryption(inputText.toUpperCase(), keyword.toUpperCase());
     }
   }
 
@@ -96,16 +96,16 @@ public class Main {
 
     int[] shiftedValuesFromText = shiftValue(numbersFromText, shiftValue * -1); // Using shiftValue() to return decrypted text.
 
-    String decipheredText = numbersToText(shiftedValuesFromText); // Will turn the values back into letters.
+    String decryptCipherText = numbersToText(shiftedValuesFromText); // Will turn the values back into letters.
 
-    System.out.println(decipheredText);
-    return decipheredText;
+    System.out.println(decryptCipherText);
+    return decryptCipherText;
 
   }
 
 
   public int vigenereEncrypt(String textToEncrypt, String keyword) {
-   return 0;
+    return 0;
   }
 
   public int vigenereDecryption(String textToEncrypt, String keyword) {
